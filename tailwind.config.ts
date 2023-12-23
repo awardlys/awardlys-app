@@ -7,8 +7,13 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        app: "minmax(10rem,220px) 1fr",
+      },
+    },
   },
+
   plugins: [],
 };
 export default config;

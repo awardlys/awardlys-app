@@ -13,11 +13,11 @@ export default function RootLayout({
 }>) {
   return (
     <main>
-      <div className="grid grid-cols-12 gap-2 ">
-        <div className="col-span-2 bg-slate-800 text-zinc-200 h-screen p-3">
+      <div className="grid grid-cols-app gap-2">
+        <div className="bg-slate-800 text-zinc-200 h-screen p-3">
           <Sidebar />
         </div>
-        <div className="col-span-10">{children}</div>
+        <div>{children}</div>
       </div>
     </main>
   );
