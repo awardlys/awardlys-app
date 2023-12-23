@@ -1,3 +1,8 @@
+import { Table } from "./components/table";
+
 export default function Awards() {
-  return <div>Awards</div>;
+  return <div>
+    <div>Awards</div>
+    <Table />
+  </div>;
 }
