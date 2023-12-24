@@ -1,4 +1,4 @@
-type Award = {
+export type Award = {
   id: string;
   key: string;
   title: string;

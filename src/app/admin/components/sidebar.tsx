@@ -1,10 +1,5 @@
 "use client";
-import {
-  ArchiveBoxIcon,
-  ArrowRightStartOnRectangleIcon,
-  TagIcon,
-  TrophyIcon,
-} from "@heroicons/react/20/solid";
+
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "./button";
 
@@ -25,7 +20,6 @@ export function Sidebar() {
               <Button
                 onClick={() => push("/admin/awards")}
                 variant={current("awards")}
-                icon={<TrophyIcon className="h-4 w-4" />}
               >
                 Premiações
               </Button>
@@ -33,18 +27,14 @@ export function Sidebar() {
             <li>
               <Button
                 onClick={() => push("/admin/categories")}
-                variant={current("categories")}
-                icon={<TagIcon className="h-4 w-4" />}
-              >
+                variant={current("categories")}>
                 Categorias
               </Button>
             </li>
             <li>
               <Button
                 onClick={() => push("/admin/items")}
-                variant={current("items")}
-                icon={<ArchiveBoxIcon className="h-4 w-4" />}
-              >
+                variant={current("items")}>
                 Itens
               </Button>
             </li>
@@ -52,7 +42,7 @@ export function Sidebar() {
         </nav>
       </div>
       <div>
-        <Button icon={<ArrowRightStartOnRectangleIcon className="h-4 w-4" />}>
+        <Button>
           Sair
         </Button>
       </div>
