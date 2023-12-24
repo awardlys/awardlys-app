@@ -2,19 +2,29 @@
 
 import { Award, awards } from "@/data/awards";
 import { Button, Modal, Table, Tag, Form, Input, Checkbox } from "antd";
+import { SearchProps } from "antd/es/input";
 import { useState } from "react";
 
 export default function Awards() {
   const [visible, setVisible] = useState(false)
+  const [search, setSearch] = useState(awards);
+  const onSearch: SearchProps["onSearch"] = (value) => {
+    console.log(value);
+    const search = awards.filter((item) =>
+      item.title.toLocaleLowerCase().includes(value.toLocaleLowerCase()) || item.subTitle.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+    );
+    setSearch(search);
+  };
 
   return <div>
     <div>Awards</div>
-    <div>
+    <div className="flex justify-between gap-2 p-3">
+      <Input.Search placeholder="Basic usage" onSearch={onSearch} />
       <Button onClick={() => setVisible(true)}>Criar Premiação</Button>
     </div>
     <div>
       <Table
-        dataSource={awards}
+        dataSource={search}
         columns={[
           {
             dataIndex: 'title',
@@ -42,12 +52,9 @@ export default function Awards() {
 
       />
     </div>
-    <Modal open={visible} onCancel={() => setVisible(false)}>
+    <Modal open={visible} onCancel={() => setVisible(false)} title={'Criar premiação'}>
       <Form
         name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
-        style={{ maxWidth: 600 }}
         initialValues={{ remember: true }}
         autoComplete="off"
       >
@@ -66,10 +73,13 @@ export default function Awards() {
         >
           <Input />
         </Form.Item>
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
-            Salvar
-          </Button>
+        
+        <Form.Item<Award>
+          label="Descrição"
+          name="description"
+          rules={[{ required: true, message: 'Please input your username!' }]}
+        >
+          <Input.TextArea rows={5}/>
         </Form.Item>
       </Form>
     </Modal>
